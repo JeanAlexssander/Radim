@@ -1,17 +1,20 @@
 import discord
 import asyncio
 import requests
+import logging
 from config import Config
 from APIkey import Chave
 
 client = discord.Client()
 
+logging.basicConfig(filename='example.log',level=logging.DEBUG)
+
 @client.event
 async def on_ready():
-    print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print('------')
+    logging.info('Logged in as')
+    logging.info(client.user.name)
+    logging.info(client.user.id)
+    logging.info('So should this')
 
 @client.event
 async def on_message(message):
