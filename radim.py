@@ -2,6 +2,7 @@ import discord
 import asyncio
 import requests
 import logging
+import codecs
 from config import Config
 from APIkey import Chave
 
@@ -31,7 +32,7 @@ async def on_message(message):
         await client.send_message(message.channel, 'Done sleeping')
 
     elif message.content.startswith('+play'):
-        file = open('procura.txt', 'w')
+        file = codecs.open('procura.txt', 'w', 'UTF-8')
         conteudo = message.content
         lista = conteudo.split(" ")
 
@@ -44,6 +45,11 @@ async def on_message(message):
             for palavra in range(2, len(lista)):
                 busca = busca + lista[palavra] + '%20'
 
+        '''
+        link = str.format('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q={0}&type=\
+        video&key={1}',busca,Chave.KEY)
+        '''
+        
         link1 = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q='
         link2 = '&type=video&key='
 
