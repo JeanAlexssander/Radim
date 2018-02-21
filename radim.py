@@ -4,7 +4,7 @@ import requests
 import logging
 import codecs
 from config import Config
-from APIkey import Chave
+
 
 client = discord.Client()
 
@@ -33,27 +33,14 @@ async def on_message(message):
 
     elif message.content.startswith('+play'):
         file = codecs.open('procura.txt', 'w', 'UTF-8')
-        conteudo = message.content
-        lista = conteudo.split(" ")
 
-        if len(lista) == 1:
-            pass
-        elif len(lista) == 2:
-            busca = lista[1]
-        elif len(lista) > 2:
-            busca = lista[1] + '%20'
-            for palavra in range(2, len(lista)):
-                busca = busca + lista[palavra] + '%20'
+        yt_url = message.content[6:]
+        busca = yt_url.replace(" ", "%20")
 
-        '''
         link = str.format('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q={0}&type=\
-        video&key={1}',busca,Chave.KEY)
-        '''
+        video&key={1}',busca,Config.KEY)
         
-        link1 = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q='
-        link2 = '&type=video&key='
 
-        link = link1 + busca + link2 + Chave.KEY
         search = requests.get(link)
 
         file.write(search.text)
