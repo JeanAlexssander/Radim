@@ -12,8 +12,10 @@ refinar os seus resultados.
 
 Para contribuir com o Radim acesse o terminal e digite os seguintes comandos:
 
+```
 git clone https://github.com/JeanAlexssander/Radim/
 cd Radim
 pipenv install
+```
 
 Com isso você terá tudo que precisa para contribuir para o Radim!
